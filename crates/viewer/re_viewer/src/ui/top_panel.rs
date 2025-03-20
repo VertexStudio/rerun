@@ -312,11 +312,11 @@ fn website_link_ui(ui: &mut egui::Ui) {
     let desired_height = ui.max_rect().height();
     let desired_height = desired_height.at_most(20.0);
 
-    let image = re_ui::icons::RERUN_IO_TEXT
+    let image = re_ui::icons::VEOVEO_TEXT
         .as_image()
         .max_height(desired_height);
 
-    let url = "https://rerun.io/";
+    let url = "https://vertexstudio.co/";
     let response = ui
         .add(egui::ImageButton::new(image))
         .on_hover_cursor(egui::CursorIcon::PointingHand);

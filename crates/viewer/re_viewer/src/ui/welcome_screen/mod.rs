@@ -1,5 +1,6 @@
 mod example_section;
 mod no_data_ui;
+mod veoveo_splash;
 mod welcome_section;
 
 use example_section::{ExampleSection, MIN_COLUMN_WIDTH};
@@ -51,7 +52,7 @@ impl WelcomeScreen {
                 .show(ui, |ui| {
                     if welcome_screen_state.hide {
                         no_data_ui::no_data_ui(ui);
-                    } else {
+                    } else if !veoveo_splash::veoveo_splash_ui(ui) {
                         self.example_page.ui(
                             ui,
                             command_sender,

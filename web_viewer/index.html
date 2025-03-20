@@ -21,7 +21,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;500&display=swap"
       rel="stylesheet"
     />
-    <title>Rerun Viewer</title>
+    <title>VeoVeo</title>
     <style>
       html {
         /* Remove touch delay: */
@@ -263,7 +263,9 @@
         }, 1500);
 
         async function wasm_with_progress() {
-          const response = await fetch("./re_viewer_bg.wasm");
+          // Add cache busting parameter with timestamp to prevent browser caching
+          const cacheBuster = `?t=${Date.now()}`;
+          const response = await fetch("./re_viewer_bg.wasm" + cacheBuster);
           // Use the uncompressed size
           var content_length;
           var content_multiplier = 1;

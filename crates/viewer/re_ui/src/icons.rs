@@ -47,9 +47,9 @@ macro_rules! icon_from_path {
     };
 }
 
-pub const RERUN_MENU: Icon = icon_from_path!("../data/icons/rerun_menu.png");
+pub const VEOVEO_MENU: Icon = icon_from_path!("../data/icons/veoveo_menu.png");
 
-pub const RERUN_IO_TEXT: Icon = icon_from_path!("../data/icons/rerun_io.png");
+pub const VEOVEO_TEXT: Icon = icon_from_path!("../data/icons/veoveo.png");
 
 pub const PLAY: Icon = icon_from_path!("../data/icons/play.png");
 pub const FOLLOW: Icon = icon_from_path!("../data/icons/follow.png");
