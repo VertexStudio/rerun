@@ -12,6 +12,11 @@
   <a href="https://discord.gg/Gcm8BbTaAj">                              <img alt="Rerun Discord"  src="https://img.shields.io/discord/1062300748202921994?label=Rerun%20Discord"> </a>
 </h1>
 
+
+<h1 align="center">
+<img src="crates/viewer/re_viewer/data/veoveo_splash.png" alt="VeoVeo" align="center">
+</h1>
+
 # Time-aware multimodal data stack and visualizations
 Rerun is building the multimodal data stack to model, ingest, store, query and view robotics-style data.
 It's used in areas like robotics, spatial and embodied AI, generative media, industrial processing, simulation, security, and health.
