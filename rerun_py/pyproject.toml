@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "maturin"
-requires = ["maturin>=1.8.1"]
+requires = ["maturin>=1.5.1"]
 
 [project]
 classifiers = [
@@ -22,7 +22,7 @@ dependencies = [
 description = "The Rerun Logging SDK"
 keywords = ["computer-vision", "logging", "rerun"]
 name = "rerun-sdk"
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 dynamic = ["version"]
 
 [[project.authors]]
@@ -34,7 +34,7 @@ text = "MIT OR Apache-2.0"
 
 [project.optional-dependencies]
 tests = ["pytest==7.1.2"]
-notebook = ["rerun-notebook==0.23.0-alpha.1+dev"]
+notebook = ["rerun-notebook==0.22.1"]
 
 [project.urls]
 documentation = "https://www.rerun.io/docs"
@@ -43,11 +43,6 @@ repository = "https://github.com/rerun-io/rerun"
 
 [project.scripts]
 rerun = "rerun_cli.__main__:main"
-
-
-######################
-# Ruff configuration #
-######################
 
 [tool.ruff]
 # https://beta.ruff.rs/docs/configuration/
@@ -67,8 +62,6 @@ extend-exclude = [
   # Automatically generated test artifacts
   "venv/",
   "target/",
-
-  "scripts/ci/compare_path_digest.py",
 
   # Intentionally uses ''' instead of """ so we can embed it in a docstring in the Python API docs.
   "docs/snippets/all/archetypes/text_document.py",
@@ -94,19 +87,6 @@ extend-exclude = [
 ]
 
 lint.ignore = [
-  # It's pretty hard to always avoid variable/argument shadowing of built-in
-  "A001",
-  "A002",
-
-  # Too many violations to fix
-  # TODO(ab): fix 'em nonetheless!
-  "ANN001",
-  "ANN202",
-  "ANN401",
-
-  # Conflicts with the formatter, as per ruff itself
-  "COM812",
-
   # Missing docstring in public function - TODO(emilk): enable for SDK but not for examples
   "D1",
 
@@ -129,28 +109,20 @@ lint.ignore = [
 
   # allow relative imports
   "TID252",
+
+  "UP007", # We need this, or `ruff format` will convert `Union[X, Y]` to `X | Y` which break on Python 3.8
 ]
 
 line-length = 120
 lint.select = [
-  "A",   # Avoid shadowing built-ins
-  "ANN", # Ensure all code is properly annotated.
-  "B",   # flake8-bugbear lints
-  "COM", # Trailing-comma-related rules
-  "C4",  # Comprehension-related rules
-  "D",   # pydocstyle codes https://www.pydocstyle.org/en/latest/error_codes.html
-  "E",   # pycodestyle error codes: https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
-  # "ERA",   # eradicate dead code (WONT DO: we have lots of dead-looking code in comments)
+  "D",       # pydocstyle codes https://www.pydocstyle.org/en/latest/error_codes.html
+  "E",       # pycodestyle error codes: https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
   "F",       # Flake8 error codes https://flake8.pycqa.org/en/latest/user/error-codes.html
-  "FA",      # Force from __future__ import annotations
   "I",       # Isort
-  "ISC",     # Ensure implicit string concat syntax
   "TID",     # flake8-tidy-imports
   "W",       # pycodestyle warning codes: https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
   "UP",      # pyupgrade (ensures idomatic code for supported python version)
-  "PIE",     # flake8-pic: various idomatic python lints
   "PLW1514", # Force setting `encoding` for open calls. This is in order to prevent issues when opening utf8 files on windows where the default encoding may depend on the active locale. https://docs.astral.sh/ruff/rules/unspecified-encoding/
-  "YTT",     # Various checks on the use of `sys.version_info` and related.
 ]
 
 lint.unfixable = [
@@ -201,44 +173,3 @@ filterwarnings = """
 error
 """
 norecursedirs = ".* venv* target* build"
-
-######################
-# mypy configuration #
-######################
-
-[tool.mypy]
-files = [
-  "docs/snippets",
-  "rerun_py/rerun_sdk/rerun",
-  "rerun_py/rerun_bindings",
-  "rerun_py/tests",
-  "rerun_notebook/src/rerun_notebook",
-  "examples/python",
-  "scripts",
-  "tests/python",
-]
-exclude = [
-  # snippets that are not runnable
-  "docs/snippets/all/concepts/how_helix_was_logged",
-  "docs/snippets/all/concepts/static/log_static",
-  "docs/snippets/all/concepts/static/log_static_10x",
-  "docs/snippets/all/concepts/static/log_temporal_10x",
-  "docs/snippets/all/concepts/static/send_static",
-  "docs/snippets/all/concepts/static/send_static_10x",
-  "docs/snippets/all/migration/log_line",
-  "docs/snippets/all/tutorials/custom-application-id",
-  "docs/snippets/all/tutorials/custom-recording-id",
-  "docs/snippets/all/tutorials/timelines_example",
-
-  # hopeless examples
-  "examples/python/objectron",
-  "examples/python/ros_node",
-]
-namespace_packages = true
-show_error_codes = true
-strict = true
-enable_error_code = ["redundant-expr", "truthy-bool", "ignore-without-code"]
-plugins = ["numpy.typing.mypy_plugin"]
-ignore_missing_imports = true
-no_implicit_reexport = false
-disallow_untyped_calls = false
