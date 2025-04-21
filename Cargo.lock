@@ -2152,8 +2152,7 @@ dependencies = [
 [[package]]
 name = "egui_plot"
 version = "0.31.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1794c66fb727dac28dffed2e4b548e5118d1cccc331d368a35411d68725dde71"
+source = "git+https://github.com/emilk/egui_plot.git?rev=9ebfc9c400f8835255754e6a2edb52ea77fab8c7#9ebfc9c400f8835255754e6a2edb52ea77fab8c7"
 dependencies = [
  "ahash",
  "egui",
@@ -10909,8 +10908,3 @@ dependencies = [
  "quote",
  "syn 2.0.100",
 ]
-
-[[patch.unused]]
-name = "egui_plot"
-version = "0.32.1"
-source = "git+https://github.com/emilk/egui_plot.git?branch=main#46b496cd40248cd7fd62420a95ffdb2b4ec7795c"
