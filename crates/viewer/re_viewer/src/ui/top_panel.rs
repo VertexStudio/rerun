@@ -1,4 +1,3 @@
-use egui::NumExt as _;
 use itertools::Itertools as _;
 
 use re_format::format_uint;
@@ -418,18 +417,10 @@ fn panel_buttons_r2l(
 
 /// Shows clickable website link as an image (text doesn't look as nice)
 fn website_link_ui(ui: &mut egui::Ui) {
-    let desired_height = ui.max_rect().height();
-    let desired_height = desired_height.at_most(20.0);
-
-    let image = re_ui::icons::RERUN_IO_TEXT
-        .as_image()
-        .fit_to_original_size(2.0) // hack, because the original SVG is very small
-        .max_height(desired_height)
-        .tint(ui.tokens().strong_fg_color);
-
-    let url = "https://rerun.io/";
+    // Use text for VeoVeo branding
+    let url = "https://vertexstudio.co/";
     let response = ui
-        .add(egui::ImageButton::new(image))
+        .add(egui::Button::new("VeoVeo").frame(false))
         .on_hover_cursor(egui::CursorIcon::PointingHand);
     if response.clicked() {
         ui.ctx().open_url(egui::output::OpenUrl {

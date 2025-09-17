@@ -29,7 +29,7 @@ impl App {
         };
         let desired_icon_height = desired_icon_height.at_most(28.0);
 
-        let image = re_ui::icons::RERUN_MENU
+        let image = re_ui::icons::VEOVEO_MENU
             .as_image()
             .max_height(desired_icon_height)
             .tint(ui.tokens().strong_fg_color)

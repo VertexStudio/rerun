@@ -117,6 +117,7 @@ macro_rules! icon_from_path {
 }
 
 pub const RERUN_MENU: Icon = icon_from_path!("../data/icons/rerun_menu.svg");
+pub const VEOVEO_MENU: Icon = icon_from_path!("../data/icons/veoveo_menu.png");
 
 pub const RERUN_IO_TEXT: Icon = icon_from_path!("../data/icons/rerun_io.svg");
 

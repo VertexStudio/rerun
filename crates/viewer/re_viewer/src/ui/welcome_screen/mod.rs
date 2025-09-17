@@ -1,13 +1,14 @@
 mod example_section;
 mod loading_data_ui;
 mod no_data_ui;
+mod veoveo_splash;
 mod welcome_section;
 
 use std::sync::Arc;
 
 use example_section::{ExampleSection, MIN_COLUMN_WIDTH};
 use re_smart_channel::SmartChannelSource;
-use welcome_section::welcome_section_ui;
+use veoveo_splash::veoveo_splash_ui;
 
 use crate::app_state::WelcomeScreenState;
 
@@ -52,17 +53,8 @@ impl WelcomeScreen {
                     ..Default::default()
                 }
                 .show(ui, |ui| {
-                    if welcome_screen_state.hide_examples {
-                        if let Some(loading_text) =
-                            loading_data_ui::loading_text_for_data_sources(log_sources)
-                        {
-                            loading_data_ui::loading_data_ui(ui, &loading_text);
-                        } else {
-                            no_data_ui::no_data_ui(ui);
-                        }
-                    } else {
-                        self.example_page.ui(ui, &welcome_section_ui);
-                    }
+                    // Just show the VeoVeo splash - no examples, no other UI
+                    veoveo_splash_ui(ui);
                 });
             });
 

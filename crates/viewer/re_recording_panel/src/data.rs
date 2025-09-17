@@ -133,11 +133,8 @@ impl<'a> RecordingPanelData<'a> {
             })
             .collect();
 
-        let show_example_section = ctx
-            .app_options()
-            .include_rerun_examples_button_in_recordings_panel
-            && !hide_examples
-            || !example_apps.is_empty();
+        // VeoVeo: Disable examples section entirely
+        let show_example_section = false;
 
         let local_tables = ctx
             .storage_context
